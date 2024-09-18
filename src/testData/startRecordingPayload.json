@@ -1,0 +1,35 @@
+{
+  "meeting_url" : "www.google.com",
+  "resolution" : {
+    "width": 1280,
+    "height": 720
+  },
+  "transcription": {
+    "enabled": true,
+    "output_modes": ["txt", "srt", "json"],
+    "custom_vocabulary": ["100ms", "WebSDK", "Flutter", "Sundar", "Pichai", "DALL-E"],
+    "summary": {
+      "enabled": true,
+      "context": "this is a general call",
+      "sections": [
+        {
+          "title": "Agenda",
+          "format": "bullets"
+        },
+        {
+          "title": "Key Points",
+          "format": "bullets"
+        },
+        {
+          "title": "Action Items",
+          "format": "bullets"
+        },
+        {
+          "title": "Short Summary",
+          "format": "paragraph"
+        }
+      ],
+      "temperature": 0.5
+    }
+  }
+}

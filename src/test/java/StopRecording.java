@@ -15,10 +15,8 @@ import static org.hamcrest.core.IsEqual.equalTo;
 public class StopRecording {
 
     private static String Base_Url = "https://api.100ms.live/v2/recordings/room/";
-    private static String Room_Id = "66eb04dafbcdd40b91868f70";
-
-    private static String Auth_Token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MjY2Nzc5NjIsImV4cCI6MTcyNzI4Mjc2MiwianRpIjoiNWNhNmU2ZGUtZDg3Yy00NzJhLTgwNDgtNjg3YWNlODk1MDUzIiwidHlwZSI6Im1hbmFnZW1lbnQiLCJ2ZXJzaW9uIjoyLCJuYmYiOjE3MjY2Nzc5NjIsImFjY2Vzc19rZXkiOiI2NmViMDM5YTQ5NDRmMDY3MzEzYTc5MjgifQ.8jPdQOrnREeKjhEJ_0m0zwTSHO2BGOhde84UHHErTyU";
-
+    private static String Room_Id = System.getenv("Room_Id");
+    private static String Auth_Token = System.getenv("Auth_Token");
     @BeforeAll
     public static void setup() {
         RestAssured.baseURI = Base_Url;

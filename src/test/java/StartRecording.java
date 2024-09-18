@@ -71,4 +71,47 @@ public class StartRecording {
 
         //----------------------------------------------------------------------------------------------//
     }
+
+    //--------------------------- edge case -------------------------------------------//
+    @Test
+    public void invalidRoomId() throws IOException {
+        String startRecordingEndpoint = "1" + "/start";
+
+        String payload = new String(Files.readAllBytes(Paths.get(payloadPath)));
+
+        Response response = given()
+                .header("Authorization", "Bearer " + Auth_Token)
+                .contentType("application/json")
+                .body(payload)
+                .when()
+                .post(startRecordingEndpoint)
+                .then()
+                .statusCode(403)  // Expecting a 200 status code for successful start
+                .extract()
+                .response();
+
+        String errorMsg = response.jsonPath().getString("message");
+        Assertions.assertTrue(errorMsg.equals("user does not have required permission"));
+    }
+    @Test
+    public void invalidAuthKey() throws IOException {
+
+        String startRecordingEndpoint = Room_Id + "/start";
+
+        String payload = new String(Files.readAllBytes(Paths.get(payloadPath)));
+
+        Response response = given()
+                .header("Authorization", "Bearer " + "random")
+                .contentType("application/json")
+                .body(payload)
+                .when()
+                .post(startRecordingEndpoint)
+                .then()
+                .statusCode(401)  // Expecting a 200 status code for successful start
+                .extract()
+                .response();
+
+        String errorMsg = response.jsonPath().getString("message");
+        Assertions.assertTrue(errorMsg.equals("Token validation error"));
+    }
 }
